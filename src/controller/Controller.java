@@ -1,5 +1,8 @@
 package controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import model.logic.Modelo;
@@ -9,10 +12,10 @@ public class Controller {
 
 	/* Instancia del Modelo*/
 	private Modelo modelo;
-	
+
 	/* Instancia de la Vista*/
 	private View view;
-	
+
 	/**
 	 * Crear la vista y el modelo del proyecto
 	 * @param capacidad tamaNo inicial del arreglo
@@ -22,8 +25,8 @@ public class Controller {
 		view = new View();
 		modelo = new Modelo();
 	}
-		
-	public void run() 
+
+	public void run() throws ParseException 
 	{
 		Scanner lector = new Scanner(System.in);
 		boolean fin = false;
@@ -35,69 +38,26 @@ public class Controller {
 
 			int option = lector.nextInt();
 			switch(option){
-				case 1:
-					view.printMessage("--------- \nCrear Arreglo \nDar capacidad inicial del arreglo: ");
-				    int capacidad = lector.nextInt();
-				    modelo = new Modelo(capacidad); 
-				    view.printMessage("Arreglo Dinamico creado");
-				    view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
+			case 1:
+				view.printMessage("--------- \req 1 ");
+				int capacidad = lector.nextInt();
+				modelo = new Modelo();
+				SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+				view.printMessage("dar fecha segunyyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+				dato=lector.next()	;
 
-				case 2:
-					view.printMessage("--------- \nDar cadena (simple) a ingresar: ");
-					dato = lector.next();
-					modelo.agregar(dato);
-					view.printMessage("Dato agregado");
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
+				Date fecha= parser.parse(dato);
 
-				case 3:
-					view.printMessage("--------- \nDar cadena (simple) a buscar: ");
-					dato = lector.next();
-					respuesta = modelo.buscar(dato);
-					if ( respuesta != null)
-					{
-						view.printMessage("Dato encontrado: "+ respuesta);
-					}
-					else
-					{
-						view.printMessage("Dato NO encontrado");
-					}
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
+				view.printMessage("dar clase de vehiculo");
+				respuesta= lector.next();
+				view.printMessage("dar infraccion");
+				dato= lector.next();
 
-				case 4:
-					view.printMessage("--------- \nDar cadena (simple) a eliminar: ");
-					dato = lector.next();
-					respuesta = modelo.eliminar(dato);
-					if ( respuesta != null)
-					{
-						view.printMessage("Dato eliminado "+ respuesta);
-					}
-					else
-					{
-						view.printMessage("Dato NO eliminado");							
-					}
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
 
-				case 5: 
-					view.printMessage("--------- \nContenido del Arreglo: ");
-					view.printModelo(modelo);
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;	
-					
-				case 6: 
-					view.printMessage("--------- \n Hasta pronto !! \n---------"); 
-					lector.close();
-					fin = true;
-					break;	
+				modelo.reque1(fecha, respuesta, dato);
+				view.printMessage(modelo.reque1(fecha, respuesta, dato));					
+				break;
 
-				default: 
-					view.printMessage("--------- \n Opcion Invalida !! \n---------");
-					break;
-			}
-		}
-		
+			}}
 	}	
 }

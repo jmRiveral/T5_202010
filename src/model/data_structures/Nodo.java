@@ -1,44 +1,49 @@
 package model.data_structures;
 
-public class Nodo <Key,Value> {
-    Nodo<Key,Value> sig;
+public class Nodo <K> {
 	
-	private Value datoActual;
-	private Key llave;
-	public Nodo(Key llaveP, Value dato){
+	public Nodo<K> sig;
+
+	public  Nodo<K> ant;
+	private K datoActual;
+	public Nodo(K dato){
 		datoActual = dato;
 		sig = null;
-		llave = llaveP;
+		ant=null;
 	}
-	public Value darDato() {
+	public K darDato() {
 		return datoActual;
 	}
 
-		public Key darllave() {
-			return llave;
-		}
-		
-		
+
+
 	public Nodo darSiguente() {
 		return sig;
 	}
-	
-	
+
+
 	public void setSiguiente(Nodo psiguiente) {
-		
+
 		sig=psiguiente;
-		
+
+	}
+	public Nodo darAnterior() {
+		return sig;
 	}
 
-	
-	
-	public void setDato(Value dato) 
+
+	public void setAnterior(Nodo panterior) {
+
+		sig=panterior;
+
+	}
+
+
+	public void setDato(K dato) 
 	{
 		datoActual = dato;
 	}
+
 	
-	public void setLlave(Key llaveEntrada) {
-		llave = llaveEntrada;
-	}
-	
+
 }
